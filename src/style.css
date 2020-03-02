@@ -1,7 +1,54 @@
 body {
-background-image: url(https://images.unsplash.com/photo-1525034687081-c702010cb70d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80)
+    background-image: url(./diego-passadori-e6frrz-kh-0-unsplash.jpg);
+    font-family: 'Spartan';
+    
 }
 
+header{
+    padding: 40px 0;
+}
 .title{
-    color: white;
+    color: #E9ECEF;
+}
+
+.boardDice, .handDice{
+    flex-direction: row;
+    display: flex;
+}
+
+.board{
+    margin-bottom: 40px;
+}
+
+.handDice{
+    margin-bottom: 40px;
+}
+
+h2{
+    color: #E9ECEF;
+}
+
+.dice{
+    border: 1px solid black ;
+    width: 80px;
+    height: 80px;
+    background-color: antiquewhite;
+}
+
+td {
+    font-weight: bold;
+}
+
+.buttons{
+    flex-direction: column;
+    display: flex;
+    /* max-width: fit-content; */
+}
+
+#rollButton{
+    margin-bottom: 40px;
+}
+
+#rulesButton{
+    margin-bottom: 40px;
 }

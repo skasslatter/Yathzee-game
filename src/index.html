@@ -3,12 +3,15 @@
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Spartan&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-        <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css">
 
     <title>Yahtzee</title>
 </head>
@@ -16,8 +19,8 @@
 <body>
     <header class="container">
         <div class="row">
-            <div class="col-12">
-                <h1 class="title text-center">Let's play YAHTZEE</h1>
+            <div class="header-text col-12">
+                <h1 class="title text-center">Let's play YAHTZEE!</h1>
             </div>
         </div>
     </header>
@@ -26,12 +29,29 @@
         <div class="row">
             <div class="col-12 col-md-6">
 
-                <section class="board">
-
+                <section id ="board" class="board">
+                    <h2>Board</h2>
+                    <div class="boardDice">
+                        <div class="dice"></div>
+                        <div class="dice"></div>
+                        <div class="dice"></div>
+                        <div class="dice"></div>
+                        <div class="dice"></div>
+                    </div>
                 </section>
                 <section class="hand">
-                    <button type="button" class="btn btn-success" type="button">Roll the dice!</button>
-                    <button class="btn btn-warning" type="button" data-toggle="collapse" data-target="#collapseExample"
+                    <h2>Hand</h2>
+
+                    <div class="handDice">
+                        <div class="dice"></div>
+                        <div class="dice"></div>
+                        <div class="dice"></div>
+                        <div class="dice"></div>
+                        <div class="dice"></div>
+                    </div>
+                    <div class="buttons">
+                    <button type="button" id="rollButton" class="btn btn-success" type="button">Roll the dice!</button>
+                    <button id="rulesButton" class="btn btn-warning" type="button" data-toggle="collapse" data-target="#collapseExample"
                         aria-expanded="false" aria-controls="collapseExample">
                         The rules </button>
                     <div class="collapse" id="collapseExample">
@@ -51,6 +71,7 @@
                             below for details.
                         </div>
                     </div>
+                </div>
                 </section>
             </div>
             <div class="col-12 col-md-6">
@@ -139,6 +160,13 @@
                 </div>
             </div>
         </div>
+        <script src="Dice.js"></script>
+        <script src="Board.js"></script>
+        <script src="Hand.js"></script>
+        <script src="ScoreCard.js"></script>
+        <script src="Game.js"></script>
+        <script src="Render.js"></script>
+       <script src="index.js"></script>
 </body>
 
 </html>

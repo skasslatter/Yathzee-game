@@ -18,4 +18,4 @@ class Hand {
     
 }
 
-//ok for now, but check addDice
+//ok for now

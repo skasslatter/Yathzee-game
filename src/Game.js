@@ -1,30 +1,34 @@
 class Game {
-    constructor(){
-        this.hand = new Hand();
-        this.board = new Board();
-        this.allDice = [new Dice(), new Dice(), new Dice(), new Dice(), new Dice()] //5 Wuerfel
-                                                                                    //benuetzen um im html anzuzeigen
-        this.throws = 0;
-    }
-    startGame (){
-        this.allDice.forEach(function (dice){
-            this.board.addDice(dice)    
-        })
-    }
+  constructor() {
+    this.hand = new Hand();
+    this.board = new Board();
+    this.allDice = [new Dice(), new Dice(), new Dice(), new Dice(), new Dice()]; //5 dice
+    //use to show in html
+    this.throws = 0;
+  }
 
-    addToBoard(){
-        //ruft add von board auf und remove von hand
-    }
+  addToBoard(oneDice) {
+    //adds to board and removes from hand
+    this.board.addDice(oneDice);
+    this.hand.removeDice(oneDice);
+  }
 
-    removeFromBoard(){
-        //ruft remove von board auf und add von hand
-    }
+  removeFromBoard(oneDice) {
+    //adds to hand and removes from board
+    this.hand.addDice(oneDice);
+    this.board.removeDice(oneDice);
+  }
 
-    rollDice(){
-        // falls throws < 3, soll rollDice von Board aufrufen
-        //und dann throws +1
-        //sonst passiert nichts
+  rollDice() {
+    let self = this;
+    if (this.throws === 0) {
+      this.allDice.forEach(function(dice) {
+        self.board.addDice(dice);
+      });
     }
+    if (this.throws < 3) {
+      this.throws = this.throws + 1;
+      this.board.rollAllDice();
+    }
+  }
 }
-
-let aGame = new Game

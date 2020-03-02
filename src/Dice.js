@@ -4,8 +4,8 @@ class Dice {   //equals 1 dice!
     }
 
     rollDice () {
-        let eyes = Math.floor((Math.random() * 6)+1)
-        return eyes;
+        this.eyes = Math.floor((Math.random() * 6)+1)
+        return this.eyes;
     }
 }
 

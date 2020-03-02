@@ -1,23 +1,19 @@
-// https://cardgames.io/yahtzee/
-
 class Board {
   constructor() {
-    this.allDice = [];
+    this.allDice = []
   }
 
   rollAllDice() {
-    // this.allDice.forEach(function(dice) {
-    //     aGame.allDice.rollAllDice; 
-    // });
-
-    //all dice in board rollDice aufrufen
-    //mit loop, mit allen [i] rollDice method aufrufen (von Dice)
-    //soll throws -1
+    this.allDice.forEach(function(dice) {
+        dice.rollDice(); 
+    });
   }
+
   addDice(oneDice) {
     if (this.allDice.length < 6) {
       this.allDice.push(oneDice);
     }
+    return this.allDice
   }
 
   removeDice(oneDice) {

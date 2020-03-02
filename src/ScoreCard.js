@@ -11,7 +11,7 @@ class ScoreCard {
       fourOfaKind: null,
       fullHouse: null,
       smallStraight: null,
-      largeStraight: null,
+      bigStraight: null,
       yahtzee: null,
       chance: null
     };
@@ -24,16 +24,12 @@ class ScoreCard {
       this.state.allOnes = calcOnes(diceArray);
     }
   }
-
   addTwos(diceArray) {
     if (this.state.allTwos === null) {
       this.state.allTwos = calcTwo(diceArray);
     }
   }
-
   addThrees(diceArray) {
-    //gets array, calc sum of all 3s in array
-    //write sum in 3-field
     if (this.state.allThrees === null) {
       this.state.allThrees = calcThree(diceArray);
     }
@@ -53,13 +49,48 @@ class ScoreCard {
       this.state.allSixes = calcSix(diceArray);
     }
   }
+  addthreeOfaKind(diceArray) {
+    if (this.state.threeOfaKind === null) {
+      this.state.threeOfaKind = calcThreeOfAKind(diceArray);
+    }
+  }
+  addFourOfaKind(diceArray) {
+    if (this.state.fourOfaKind === null) {
+      this.state.fourOfaKind = calcFourOfAKind(diceArray);
+    }
+  }
+  addFullHouse(diceArray) {
+    if (this.state.fullHouse === null) {
+      this.state.fullHouse = calcFullHouse(diceArray);
+    }
+  }
+  addSmallStraight(diceArray) {
+    if (this.state.smallStraight === null) {
+      this.state.smallStraight = calcSmallStraight(diceArray);
+    }
+  }
+  addBigStraight(diceArray) {
+    if (this.state.bigStraight === null) {
+      this.state.bigStraight = calcBigStraight(diceArray);
+    }
+  }
+  addYahtzee(diceArray) {
+    if (this.state.yahtzee === null) {
+      this.state.yahtzee = calcYahtzee(diceArray);
+    }
+  }
+  addChance(diceArray) {
+    if (this.state.chance === null) {
+      this.state.chance = calcChance(diceArray);
+    }
+  }
 }
 
 ///////generic calc function
 function calcN(diceArray, number) {
   var calc = 0;
   for (i = 0; i < diceArray.length; i++) {
-    if (diceArray[i].eyes === number) {
+    if (diceArray[i] === number) {
       calc = calc + number;
     }
   }
@@ -76,10 +107,10 @@ function sum(diceArray) {
 }
 
 /////generic counter function
-function counter(diceArray, dice) {
+function counter(diceArray, eyes) {
   var counter = 0;
   for (let i = 0; i < diceArray.length; i++) {
-    if (diceArray[i].eyes === dice.eyes) {
+    if (diceArray[i].eyes === eyes) {
       counter++;
     }
   }
@@ -112,6 +143,8 @@ function calcSix(diceArray) {
 }
 
 ///// LOWER SECTION calc functions
+// [1, 1, 1, 4, 2]
+// [3, 1, 0, 1, 0, 0]
 
 function calcThreeOfAKind(diceArray) {
   if (
@@ -158,41 +191,41 @@ function calcFullHouse(diceArray) {
   }
 }
 
-function bigStraight(diceArray) {
-  let sortedArray = diceArray.eyes.sort();
-  if (sortedArray === [1, 2, 3, 4, 5, 6]) {
-    //needs to have all numbers from 1-6
-    return 40; //bigStraight is always 40
-  }
-}
+// function calcBigStraight(diceArray) {
+//   let sortedArray = diceArray.eyes.sort();
+//   if (sortedArray === [1, 2, 3, 4, 5]) {
+//     //needs to have all numbers from 1-6
+//     return 40; //bigStraight is always 40
+//   }
+// }
 
-function smallStraight(diceArray) {
-  //noch eyes??
-  if (diceArray.includes(2, 3, 4, 5, 6)
-  || diceArray.includes(1, 2, 3, 4, 5)) {
-    return 30; //smallStraight is always 30
-  }
-}
+// function calcSmallStraight(diceArray) {
+//   //noch eyes??
+//   if (diceArray.includes(2, 3, 4, 5, 6)
+//   || diceArray.includes(1, 2, 3, 4, 5)) {
+//     return 30; //smallStraight is always 30
+//   }
+// }
 
 function calcYahtzee(diceArray) {
   for (i = 1; i < diceArray.length; i++) {
-    if (diceArray[i].eyes === diceArray[i - 1].eyes) {
-      return 50;
-    } else {
-      return 0;
+    if (diceArray[i].eyes !== diceArray[i - 1].eyes) {
+		return 0;
     }
   }
+  return 50;
 }
 
 function calcChance(diceArray) {
-    return sum(diceArray);
-}   //the sum of all dice, no rules
+  return sum(diceArray);
+} //the sum of all dice, no rules
 
 ///// TOTAL SUM FUNCTION
-function total(ScoreCard) {
+//!! bonus is missing
+function total(scoreCard) {
   var total = 0;
-  for (let property in ScoreCard.state) {
-    total += ScoreCard.state[property];
+  for (let property in scoreCard.state) {
+    total += scoreCard.state[property];
   }
   return total;
 }
