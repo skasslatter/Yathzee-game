@@ -1,10 +1,12 @@
-class Dice {
+class Dice {   //equals 1 dice!
     constructor(){
         this.eyes = null;
     }
+
     rollDice () {
-        //random number
-        //result = eyes of dice
-        //return value
+        let eyes = Math.floor((Math.random() * 6)+1)
+        return eyes;
     }
 }
+
+//ok for now

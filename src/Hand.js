@@ -4,11 +4,18 @@ class Hand {
     }
 
     addDice(oneDice){
-        this.allDice.push(oneDice) 
+        if (this.allDice.length < 6){
+            this.allDice.push(oneDice) 
+        }
     }
     
-    removeDice (){
-        //
+    removeDice (oneDice){
+        if (this.allDice.length > 0){
+            var index = this.allDice.indexOf(oneDice);
+            this.allDice.splice(index, 1);
+        }
     }
     
 }
+
+//ok for now, but check addDice
