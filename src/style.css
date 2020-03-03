@@ -11,6 +11,10 @@ header{
     color: #E9ECEF;
 }
 
+.row {
+    justify-content: space-between;
+}
+
 .boardDice, .handDice{
     flex-direction: row;
     display: flex;
@@ -46,9 +50,17 @@ td {
 }
 
 #rollButton{
-    margin-bottom: 40px;
+    margin-bottom: 20px;
 }
 
 #rulesButton{
     margin-bottom: 40px;
 }
+
+.progress {
+    margin-bottom: 40px;
+}
+
+/* .progress-0 {
+    color: black !important;
+} */

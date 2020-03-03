@@ -31,4 +31,9 @@ class Game {
       this.board.rollAllDice();
     }
   }
+
+  resetThrows() {
+    this.throws = 0;
+    return this.throws
+  }
 }

@@ -7,6 +7,7 @@ class ScoreCard {
       allFours: null,
       allFives: null,
       allSixes: null,
+      bonus: null,
       threeOfaKind: null,
       fourOfaKind: null,
       fullHouse: null,
@@ -107,14 +108,24 @@ function sum(diceArray) {
 }
 
 /////generic counter function
-function counter(diceArray, eyes) {
+function counter(array, item) {
   var counter = 0;
-  for (let i = 0; i < diceArray.length; i++) {
-    if (diceArray[i].eyes === eyes) {
+  for (let i = 0; i < array.length; i++) {
+    if (array[i] === item) {
       counter++;
     }
   }
   return counter;
+}
+
+/////generic frequency function
+function calcFrequency(diceArray) {
+  let frequency = [0, 0, 0, 0, 0, 0];
+  for (let i = 0; i < diceArray.length; i++) {
+    let value = diceArray[i].eyes;
+    frequency[value - 1] = frequency[value - 1] + 1;
+  }
+  return frequency;
 }
 
 ///// UPPER SECTION calc functions
@@ -142,75 +153,77 @@ function calcSix(diceArray) {
   return calcN(diceArray, 6);
 }
 
-///// LOWER SECTION calc functions
-// [1, 1, 1, 4, 2]
-// [3, 1, 0, 1, 0, 0]
-
-function calcThreeOfAKind(diceArray) {
-  if (
-    counter(diceArray, 1) >= 3 ||
-    counter(diceArray, 2) >= 3 ||
-    counter(diceArray, 3) >= 3 ||
-    counter(diceArray, 4) >= 3 ||
-    counter(diceArray, 5) >= 3 ||
-    counter(diceArray, 6) >= 3
-  ) {
-    return sum(diceArray);
+function calcBonus(diceArray) {
+  let bonus = 50
+  let totalUpperSection = calcOnes(diceArray)+calcTwo(diceArray)
+  +calcThree(diceArray)+calcFour(diceArray)+calcFive()
+  +calcSix(diceArray)
+  if (totalUpperSection >= 63){
+    return bonus;
   }
+  else return 0;
 }
 
-function calcFourOfAKind(diceArray) {
-  if (
-    counter(diceArray, 1) >= 4 ||
-    counter(diceArray, 2) >= 4 ||
-    counter(diceArray, 3) >= 4 ||
-    counter(diceArray, 4) >= 4 ||
-    counter(diceArray, 5) >= 4 ||
-    counter(diceArray, 6) >= 4
-  ) {
+///// LOWER SECTION calc functions
+function calcThreeOfAKind(diceArray) {
+  let frequency = calcFrequency(diceArray);
+  if (frequency.includes(3)){
     return sum(diceArray);
   }
+  return 0;
+}
+
+// function calcThreeOfAKind(diceArray) {
+//   if (
+//     counter(diceArray, 1) >= 3 ||
+//     counter(diceArray, 2) >= 3 ||
+//     counter(diceArray, 3) >= 3 ||
+//     counter(diceArray, 4) >= 3 ||
+//     counter(diceArray, 5) >= 3 ||
+//     counter(diceArray, 6) >= 3
+//   ) {
+//     return sum(diceArray);
+//   }
+// }
+
+function calcFourOfAKind(diceArray) {
+  let frequency = calcFrequency(diceArray);
+  if (frequency.includes(4)){
+    return sum(diceArray);
+  }
+  return 0;
 }
 
 function calcFullHouse(diceArray) {
-  if (
-    (counter(diceArray, 1) >= 3 ||
-      counter(diceArray, 2) >= 3 ||
-      counter(diceArray, 3) >= 3 ||
-      counter(diceArray, 4) >= 3 ||
-      counter(diceArray, 5) >= 3 ||
-      counter(diceArray, 6) >= 3) &&
-    (counter(diceArray, 1) >= 2 ||
-      counter(diceArray, 2) >= 2 ||
-      counter(diceArray, 3) >= 2 ||
-      counter(diceArray, 4) >= 2 ||
-      counter(diceArray, 5) >= 2 ||
-      counter(diceArray, 6) >= 2)
-  ) {
-    return 25; //full house is always 25
+  let frequency = calcFrequency(diceArray);
+  if (frequency.includes(2) && frequency.includes(3)){
+    return 25;
   }
+  else return 0;
 }
 
-// function calcBigStraight(diceArray) {
-//   let sortedArray = diceArray.eyes.sort();
-//   if (sortedArray === [1, 2, 3, 4, 5]) {
-//     //needs to have all numbers from 1-6
-//     return 40; //bigStraight is always 40
-//   }
-// }
+function calcBigStraight(diceArray) {
+  let frequency = calcFrequency(diceArray);
+  let stringFrequency = frequency.toString()
+  if (stringFrequency === "1,1,1,1,1,0" || stringFrequency === "0,1,1,1,1,1"){
+    return 40;
+  }
+  else return 0;
+}
 
-// function calcSmallStraight(diceArray) {
-//   //noch eyes??
-//   if (diceArray.includes(2, 3, 4, 5, 6)
-//   || diceArray.includes(1, 2, 3, 4, 5)) {
-//     return 30; //smallStraight is always 30
-//   }
-// }
+function calcSmallStraight(diceArray) {
+
+}
+
+// bigStraight is always 40
+// smallStraight is always 30
+//yathzee is alwazs 50
+
 
 function calcYahtzee(diceArray) {
   for (i = 1; i < diceArray.length; i++) {
     if (diceArray[i].eyes !== diceArray[i - 1].eyes) {
-		return 0;
+      return 0;
     }
   }
   return 50;
@@ -220,12 +233,13 @@ function calcChance(diceArray) {
   return sum(diceArray);
 } //the sum of all dice, no rules
 
+
 ///// TOTAL SUM FUNCTION
-//!! bonus is missing
+
 function total(scoreCard) {
   var total = 0;
   for (let property in scoreCard.state) {
     total += scoreCard.state[property];
   }
-  return total;
+  return total + calcBonus(diceArray);
 }

@@ -27,9 +27,9 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-12 col-md-6">
+            <div class="col-10 col-md-5 col-md-offset-2">
 
-                <section id ="board" class="board">
+                <section id="board" class="board">
                     <h2>Board</h2>
                     <div class="boardDice">
                         <div class="dice"></div>
@@ -39,7 +39,7 @@
                         <div class="dice"></div>
                     </div>
                 </section>
-                <section class="hand">
+                <section id="hand" class="hand">
                     <h2>Hand</h2>
 
                     <div class="handDice">
@@ -50,31 +50,45 @@
                         <div class="dice"></div>
                     </div>
                     <div class="buttons">
-                    <button type="button" id="rollButton" class="btn btn-success" type="button">Roll the dice!</button>
-                    <button id="rulesButton" class="btn btn-warning" type="button" data-toggle="collapse" data-target="#collapseExample"
-                        aria-expanded="false" aria-controls="collapseExample">
-                        The rules </button>
-                    <div class="collapse" id="collapseExample">
-                        <div class="card card-body">
-                            All upper section categories score a sum of the specified die face. If the total score of
-                            all upper section categories is 63 or more, an extra bonus of 35 is added.
-                            Three of a kind: Get three dice with the same number. Points are the sum all dice (not just
-                            the three of a kind).
-                            Four of a kind: Get four dice with the same number. Points are the sum all dice (not just
-                            the four of a kind).
-                            Full house: Get three of a kind and a pair, e.g. 1,1,3,3,3 or 3,3,3,6,6. Scores 25 points.
-                            Small straight: Get four sequential dice, 1,2,3,4 or 2,3,4,5 or 3,4,5,6. Scores 30 points.
-                            Large straight: Get five sequential dice, 1,2,3,4,5 or 2,3,4,5,6. Scores 40 points.
-                            Chance: You can put anything into chance, it's basically like a garbage can when you don't
-                            have anything else you can use the dice for. The score is simply the sum of the dice.
-                            YAHTZEE: Five of a kind. Scores 50 points. You can optionally get multiple Yahtzees, see
-                            below for details.
+                        <button type="button" id="rollButton" class="btn btn-success" type="button">Roll the
+                            dice!</button>
+                        <div class="progress">
+                            <div id="progress-bar" class="progress-bar progress-bar-info" role="progressbar"
+                                aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:33%">
+                                0/3 Throws
+                            </div>
                         </div>
+                        <button id="rulesButton" class="btn btn-warning" type="button" data-toggle="collapse"
+                            data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                            The rules </button>
+                        <div class="collapse" id="collapseExample">
+                            <div class="card card-body">
+                                All upper section categories score a sum of the specified die face. If the total score
+                                of
+                                all upper section categories is 63 or more, an extra bonus of 35 is added.
+                                Three of a kind: Get three dice with the same number. Points are the sum all dice (not
+                                just
+                                the three of a kind).
+                                Four of a kind: Get four dice with the same number. Points are the sum all dice (not
+                                just
+                                the four of a kind).
+                                Full house: Get three of a kind and a pair, e.g. 1,1,3,3,3 or 3,3,3,6,6. Scores 25
+                                points.
+                                Small straight: Get four sequential dice, 1,2,3,4 or 2,3,4,5 or 3,4,5,6. Scores 30
+                                points.
+                                Large straight: Get five sequential dice, 1,2,3,4,5 or 2,3,4,5,6. Scores 40 points.
+                                Chance: You can put anything into chance, it's basically like a garbage can when you
+                                don't
+                                have anything else you can use the dice for. The score is simply the sum of the dice.
+                                YAHTZEE: Five of a kind. Scores 50 points. You can optionally get multiple Yahtzees, see
+                                below for details.
+                            </div>
+                        </div>
+
                     </div>
-                </div>
                 </section>
             </div>
-            <div class="col-12 col-md-6">
+            <div class="col-10 col-md-5 ml-2">
                 <div id="scoresheet">
                     <div id="scoreSheet">
                         <table class="table table-striped">
@@ -82,6 +96,7 @@
                                 <tr>
                                     <th class="section-heading">Upper section</th>
                                     <th>Score</th>
+                                    <th>Spec. Score</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -93,66 +108,81 @@
                                 <tr>
                                     <td>Twos</td>
                                     <td id="2-score"></td>
+                                    <td class="speculative-score"></td>
                                 </tr>
                                 <tr>
                                     <td>Threes</td>
                                     <td id="3-score"></td>
+                                    <td class="speculative-score"></td>
                                 </tr>
                                 <tr>
                                     <td>Fours</td>
                                     <td id="4-score"></td>
+                                    <td class="speculative-score"></td>
                                 </tr>
                                 <tr>
                                     <td>Fives</td>
                                     <td id="5-score"></td>
+                                    <td class="speculative-score"></td>
                                 </tr>
                                 <tr>
                                     <td>Sixes</td>
-                                    <td id="6-score"></td>
+                                    <td id="6-score"></td>                                    
+                                    <td class="speculative-score"></td>
                                 </tr>
                                 <tr id="bonus">
                                     <td>Bonus</td>
                                     <td id="bonus"></td>
+                                    <td class="empty-score"></td>
                                 </tr>
                             </tbody>
                             <thead class="thead-light">
                                 <tr>
                                     <th class="section-heading">Lower section</th>
                                     <th>Score</th>
+                                    <th>Spec. Score</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td>3 of a kind</td>
                                     <td id="3-kind"></td>
+                                    <td class="speculative-score"></td>
                                 </tr>
                                 <tr>
                                     <td>4 of a kind</td>
                                     <td id="4-kind"></td>
+                                    <td class="speculative-score"></td>
                                 </tr>
                                 <tr>
                                     <td>Full House</td>
                                     <td id="full-house"></td>
+                                    <td class="speculative-score"></td>
                                 </tr>
                                 <tr>
                                     <td>Small Straight</td>
                                     <td id="small-straight"></td>
+                                    <td class="speculative-score"></td>
                                 </tr>
                                 <tr>
                                     <td>Large Straight</td>
-                                    <td id="large-straight"></td>
+                                    <td id="big-straight"></td>
+                                    <td class="speculative-score"></td>
                                 </tr>
                                 <tr>
                                     <td>Yahtzee</td>
                                     <td id="yahtzee"></td>
+                                    <td class="speculative-score"></td>
                                 </tr>
                                 <tr>
                                     <td>Chance</td>
                                     <td id="chance"></td>
+                                    <td class="speculative-score"></td>
                                 </tr>
                                 <tr>
                                     <td>Total Score</td>
                                     <td id="total"></td>
+                                    <td class="empty-score"></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -166,7 +196,7 @@
         <script src="ScoreCard.js"></script>
         <script src="Game.js"></script>
         <script src="Render.js"></script>
-       <script src="index.js"></script>
+        <script src="index.js"></script>
 </body>
 
 </html>
