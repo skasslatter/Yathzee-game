@@ -1,5 +1,6 @@
 function renderScorecard(scorecard) {}
 
+
 function renderBoard(board) {
   let $board = document.getElementById("board");
   let $dice = $board.querySelectorAll(".dice");
@@ -42,13 +43,13 @@ function renderThrow() {
   }
 }
 
-function renderBonus() {
-  calcBonus()
-  let $bonus = document.getElementById("bonus");
-  if (scoreCard.state.bonus === true) {
-    $bonus.innerHTML = "50";
-  }
-}
+// function renderBonus() {
+//   calcBonus()
+//   let $bonus = document.getElementById("bonus");
+//   if (scoreCard.state.bonus === true) {
+//     $bonus.innerHTML = "50";
+//   }
+// }
 
 function renderGame(game, scorecard) {
   renderBoard(game.board);
