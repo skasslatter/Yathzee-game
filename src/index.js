@@ -23,14 +23,13 @@ $handDice.forEach(function($dice, index) {
   });
 });
 
-//SCORECARD
+//SCORECARD, bis 2 ok, ab 3 refactorn! (in render)
 let $scoreOne = document.getElementById("1-score");
 $scoreOne.addEventListener("click", function() {
-  if (game.throws > 0) {
+  if (game.throws > 0 && scoreCard.state.allOnes === null) {
     scoreCard.addOnes(game.allDice);
-    $scoreOne.innerHTML = scoreCard.state.allOnes;
-    renderGame(game, scoreCard);
     game.resetThrows();
+    renderGame(game, scoreCard);
   }
 });
 
@@ -38,19 +37,19 @@ let $scoreTwo = document.getElementById("2-score");
 $scoreTwo.addEventListener("click", function() {
   if (game.throws > 0) {
     scoreCard.addTwos(game.allDice);
-    $scoreTwo.innerHTML = scoreCard.state.allTwos;
-    renderGame(game, scoreCard);
     game.resetThrows();
+    renderGame(game, scoreCard);
   }
 });
 
+//fuer alle umstellen
 let $scoreThree = document.getElementById("3-score");
 $scoreThree.addEventListener("click", function() {
   if (game.throws > 0) {
     scoreCard.addThrees(game.allDice);
     $scoreThree.innerHTML = scoreCard.state.allThrees;
-    renderGame(game, scoreCard);
     game.resetThrows();
+    renderGame(game, scoreCard);
   }
 });
 
@@ -59,8 +58,8 @@ $scoreFour.addEventListener("click", function() {
   if (game.throws > 0) {
     scoreCard.addFours(game.allDice);
     $scoreFour.innerHTML = scoreCard.state.allFours;
-    renderGame(game, scoreCard);
     game.resetThrows();
+    renderGame(game, scoreCard);
   }
 });
 
@@ -69,8 +68,8 @@ $scoreFive.addEventListener("click", function() {
   if (game.throws > 0) {
     scoreCard.addFives(game.allDice);
     $scoreFive.innerHTML = scoreCard.state.allFives;
-    renderGame(game, scoreCard);
     game.resetThrows();
+    renderGame(game, scoreCard);
   }
 });
 
@@ -79,8 +78,8 @@ $scoreSix.addEventListener("click", function() {
   if (game.throws > 0) {
     scoreCard.addSix(game.allDice);
     $scoreSix.innerHTML = scoreCard.state.allSixes;
-    renderGame(game, scoreCard);
     game.resetThrows();
+    renderGame(game, scoreCard);
   }
 });
 
@@ -89,8 +88,8 @@ $threeOfaKind.addEventListener("click", function() {
   if (game.throws > 0) {
     scoreCard.addthreeOfaKind(game.allDice);
     $threeOfaKind.innerHTML = scoreCard.state.threeOfaKind;
-    renderGame(game, scoreCard);
     game.resetThrows();
+    renderGame(game, scoreCard);
   }
 });
 
@@ -99,8 +98,8 @@ $fourOfaKind.addEventListener("click", function() {
   if (game.throws > 0) {
     scoreCard.addFourOfaKind(game.allDice);
     $fourOfaKind.innerHTML = scoreCard.state.fourOfaKind;
-    renderGame(game, scoreCard);
     game.resetThrows();
+    renderGame(game, scoreCard);
   }
 });
 
@@ -109,8 +108,8 @@ $fullHouse.addEventListener("click", function() {
   if (game.throws > 0) {
     scoreCard.addFullHouse(game.allDice);
     $fullHouse.innerHTML = scoreCard.state.fullHouse;
-    renderGame(game, scoreCard);
     game.resetThrows();
+    renderGame(game, scoreCard);
   }
 });
 
@@ -129,8 +128,8 @@ $bigStraight.addEventListener("click", function() {
   if (game.throws > 0) {
     scoreCard.addBigStraight(game.allDice);
     $bigStraight.innerHTML = scoreCard.state.bigStraight;
-    renderGame(game, scoreCard);
     game.resetThrows();
+    renderGame(game, scoreCard);
   }
 });
 
@@ -139,8 +138,8 @@ $yahtzee.addEventListener("click", function() {
   if (game.throws > 0) {
     scoreCard.addYahtzee(game.allDice);
     $yahtzee.innerHTML = scoreCard.state.yahtzee;
-    renderGame(game, scoreCard);
     game.resetThrows();
+    renderGame(game, scoreCard);
   }
 });
 
@@ -149,9 +148,9 @@ $chance.addEventListener("click", function() {
   if (game.throws > 0) {
     scoreCard.addChance(game.allDice);
     $chance.innerHTML = scoreCard.state.chance;
-    renderGame(game, scoreCard);
     game.resetThrows();
+    renderGame(game, scoreCard);
   }
 });
 
-let $specChance = document.querySelector("#chance .speculative-score");
+// let $specChance = document.querySelector("#chance .speculative-score");

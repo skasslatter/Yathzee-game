@@ -7,7 +7,6 @@ class ScoreCard {
       allFours: null,
       allFives: null,
       allSixes: null,
-      bonus: false,
       threeOfaKind: null,
       fourOfaKind: null,
       fullHouse: null,
@@ -19,13 +18,12 @@ class ScoreCard {
   }
   //potential score
 
-  
   addOnes(diceArray) {
     if (this.state.allOnes === null) {
       this.state.allOnes = calcOnes(diceArray);
     }
   }
-  
+
   addTwos(diceArray) {
     if (this.state.allTwos === null) {
       this.state.allTwos = calcTwo(diceArray);
@@ -85,6 +83,38 @@ class ScoreCard {
     if (this.state.chance === null) {
       this.state.chance = calcChance(diceArray);
     }
+  }
+
+  getBonus() {
+    let totalUpperSection =
+      this.state.allOnes +
+      this.state.allTwos +
+      this.state.allThrees +
+      this.state.allFours +
+      this.state.allFives +
+      this.state.allSixes;
+    if (totalUpperSection >= 63) {
+      return 50;
+    }
+    return 0;
+  }
+
+  getTotal() {
+    var total = 0;
+    var bonus = this.getBonus();
+    for (let property in this.state) {
+      total += this.state[property];
+    }
+    return total + bonus;
+  }
+
+  isGameFinished() {
+    for (let property in this.state) {
+      if (property === null);{
+        return false;
+      }
+    }
+    return true;
   }
 }
 
@@ -154,18 +184,10 @@ function calcSix(diceArray) {
   return calcN(diceArray, 6);
 }
 
-function calcBonus(ScoreCard) {
-  let totalUpperSection = (ScoreCard.state.allOnes + ScoreCard.state.allTwos + ScoreCard.state.allThrees + ScoreCard.state.allFours + ScoreCard.state.allFives + ScoreCard.state.allSixes)
-  if (totalUpperSection >= 63){
-    return ScoreCard.state.bonus = true;
-  }
-  else return ScoreCard.state.bonus = false;
-}
-
 ///// LOWER SECTION calc functions
 function calcThreeOfAKind(diceArray) {
   let frequency = calcFrequency(diceArray);
-  if (frequency.includes(3)){
+  if (frequency.includes(3)) {
     return sum(diceArray);
   }
   return 0;
@@ -186,7 +208,7 @@ function calcThreeOfAKind(diceArray) {
 
 function calcFourOfAKind(diceArray) {
   let frequency = calcFrequency(diceArray);
-  if (frequency.includes(4)){
+  if (frequency.includes(4)) {
     return sum(diceArray);
   }
   return 0;
@@ -194,29 +216,49 @@ function calcFourOfAKind(diceArray) {
 
 function calcFullHouse(diceArray) {
   let frequency = calcFrequency(diceArray);
-  if (frequency.includes(2) && frequency.includes(3)){
+  if (frequency.includes(2) && frequency.includes(3)) {
     return 25;
-  }
-  else return 0;
+  } else return 0;
 }
 
 function calcBigStraight(diceArray) {
   let frequency = calcFrequency(diceArray);
-  let stringFrequency = frequency.toString()
-  if (stringFrequency === "1,1,1,1,1,0" || stringFrequency === "0,1,1,1,1,1"){
+  let stringFrequency = frequency.toString();
+  if (stringFrequency === "1,1,1,1,1,0" || stringFrequency === "0,1,1,1,1,1") {
     return 40;
   }
-  else return 0;
+  return 0;
+}
+
+function tranformArray(diceArray) {
+  //helper function for small straight
+  let newArray = [];
+  diceArray.forEach(function(dice) {
+    newArray.push(dice.eyes);
+  });
+  return newArray;
 }
 
 function calcSmallStraight(diceArray) {
-
+  let nrArray = tranformArray(diceArray);
+  nrArray.sort();
+  let count = 0;
+  for (let i = 1; i < nrArray.length; i++) {
+    if (nrArray[i] === nrArray[i - 1]) {
+      count++;
+    } else {
+      count = 0;
+    }
+  }
+  if (count >= 3) {
+    return 30;
+  }
+  return 0;
 }
 
 // bigStraight is always 40
 // smallStraight is always 30
 //yathzee is alwazs 50
-
 
 function calcYahtzee(diceArray) {
   for (i = 1; i < diceArray.length; i++) {
@@ -230,17 +272,3 @@ function calcYahtzee(diceArray) {
 function calcChance(diceArray) {
   return sum(diceArray);
 } //the sum of all dice, no rules
-
-
-///// TOTAL SUM FUNCTION
-
-function total(scoreCard) {
-  var total = 0;
-  for (let property in scoreCard.state) {
-    total += scoreCard.state[property];
-  }
-  if (this.state.bonus === true){
-    total = total + 50;
-  }
-  return total;
-}

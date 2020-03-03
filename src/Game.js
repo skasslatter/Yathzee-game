@@ -32,7 +32,6 @@ class Game {
     }
   }
 
-
   resetThrows() {
     this.hand = new Hand();
     this.board = new Board();

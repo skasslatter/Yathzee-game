@@ -3,11 +3,11 @@
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://fonts.googleapis.com/css?family=Spartan&display=swap" rel="stylesheet">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -25,7 +25,7 @@
         </div>
     </header>
 
-    <div class="container">
+    <section class="container" id="game">
         <div class="row">
             <div class="col-10 col-md-5 col-md-offset-2">
 
@@ -54,7 +54,7 @@
                             dice!</button>
                         <div class="progress">
                             <div id="progress-bar" class="progress-bar progress-bar-info" role="progressbar"
-                                aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:33%">
+                                aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:0%">
                                 0/3 Throws
                             </div>
                         </div>
@@ -103,7 +103,7 @@
                                 <tr>
                                     <td>Ones</td>
                                     <td id="1-score"></td>
-                                    <td class="speculative-score"></td>
+                                    <td id="1-score-spec" class="speculative-score"></td>
                                 </tr>
                                 <tr>
                                     <td>Twos</td>
@@ -127,10 +127,10 @@
                                 </tr>
                                 <tr>
                                     <td>Sixes</td>
-                                    <td id="6-score"></td>                                    
+                                    <td id="6-score"></td>
                                     <td class="speculative-score"></td>
                                 </tr>
-                                <tr id="bonus">
+                                <tr>
                                     <td>Bonus</td>
                                     <td id="bonus"></td>
                                     <td class="empty-score"></td>
@@ -190,6 +190,8 @@
                 </div>
             </div>
         </div>
+    </section>
+
         <script src="Dice.js"></script>
         <script src="Board.js"></script>
         <script src="Hand.js"></script>
