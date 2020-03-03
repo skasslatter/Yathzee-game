@@ -7,7 +7,7 @@ class ScoreCard {
       allFours: null,
       allFives: null,
       allSixes: null,
-      bonus: null,
+      bonus: false,
       threeOfaKind: null,
       fourOfaKind: null,
       fullHouse: null,
@@ -18,13 +18,14 @@ class ScoreCard {
     };
   }
   //potential score
-  //actual score
 
+  
   addOnes(diceArray) {
     if (this.state.allOnes === null) {
       this.state.allOnes = calcOnes(diceArray);
     }
   }
+  
   addTwos(diceArray) {
     if (this.state.allTwos === null) {
       this.state.allTwos = calcTwo(diceArray);
@@ -91,7 +92,7 @@ class ScoreCard {
 function calcN(diceArray, number) {
   var calc = 0;
   for (i = 0; i < diceArray.length; i++) {
-    if (diceArray[i] === number) {
+    if (diceArray[i].eyes === number) {
       calc = calc + number;
     }
   }
@@ -153,15 +154,12 @@ function calcSix(diceArray) {
   return calcN(diceArray, 6);
 }
 
-function calcBonus(diceArray) {
-  let bonus = 50
-  let totalUpperSection = calcOnes(diceArray)+calcTwo(diceArray)
-  +calcThree(diceArray)+calcFour(diceArray)+calcFive()
-  +calcSix(diceArray)
+function calcBonus(ScoreCard) {
+  let totalUpperSection = (ScoreCard.state.allOnes + ScoreCard.state.allTwos + ScoreCard.state.allThrees + ScoreCard.state.allFours + ScoreCard.state.allFives + ScoreCard.state.allSixes)
   if (totalUpperSection >= 63){
-    return bonus;
+    return ScoreCard.state.bonus = true;
   }
-  else return 0;
+  else return ScoreCard.state.bonus = false;
 }
 
 ///// LOWER SECTION calc functions
@@ -241,5 +239,8 @@ function total(scoreCard) {
   for (let property in scoreCard.state) {
     total += scoreCard.state[property];
   }
-  return total + calcBonus(diceArray);
+  if (this.state.bonus === true){
+    total = total + 50;
+  }
+  return total;
 }

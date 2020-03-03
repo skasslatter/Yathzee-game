@@ -1,6 +1,4 @@
-function renderScorecard(scorecard) {
-  
-}
+function renderScorecard(scorecard) {}
 
 function renderBoard(board) {
   let $board = document.getElementById("board");
@@ -31,7 +29,7 @@ function renderHand(hand) {
 }
 
 function renderThrow() {
-  $progressBar = document.getElementById("progress-bar");
+  let $progressBar = document.getElementById("progress-bar");
   if (game.throws === 1) {
     $progressBar.innerHTML = "1/3 Throws";
     $progressBar.style = "width:33%";
@@ -44,9 +42,18 @@ function renderThrow() {
   }
 }
 
+function renderBonus() {
+  calcBonus()
+  let $bonus = document.getElementById("bonus");
+  if (scoreCard.state.bonus === true) {
+    $bonus.innerHTML = "50";
+  }
+}
+
 function renderGame(game, scorecard) {
-  renderScorecard(scorecard);
   renderBoard(game.board);
   renderHand(game.hand);
+  renderScorecard(scorecard);
   renderThrow(game.throws);
+  // renderBonus(scoreCard);
 }
