@@ -16,7 +16,6 @@ class ScoreCard {
       chance: null
     };
   }
-  //potential score
 
   addOnes(diceArray) {
     if (this.state.allOnes === null) {
@@ -110,53 +109,13 @@ class ScoreCard {
 
   isGameFinished() {
     for (let property in this.state) {
-      if (property === null);{
+      if (property === null);
+      {
         return false;
       }
     }
     return true;
   }
-}
-
-///////generic calc function
-function calcN(diceArray, number) {
-  var calc = 0;
-  for (i = 0; i < diceArray.length; i++) {
-    if (diceArray[i].eyes === number) {
-      calc = calc + number;
-    }
-  }
-  return calc;
-}
-
-///////generic sum function
-function sum(diceArray) {
-  var sum = 0;
-  for (i = 0; i < diceArray.length; i++) {
-    sum = sum + diceArray[i].eyes;
-  }
-  return sum;
-}
-
-/////generic counter function
-function counter(array, item) {
-  var counter = 0;
-  for (let i = 0; i < array.length; i++) {
-    if (array[i] === item) {
-      counter++;
-    }
-  }
-  return counter;
-}
-
-/////generic frequency function
-function calcFrequency(diceArray) {
-  let frequency = [0, 0, 0, 0, 0, 0];
-  for (let i = 0; i < diceArray.length; i++) {
-    let value = diceArray[i].eyes;
-    frequency[value - 1] = frequency[value - 1] + 1;
-  }
-  return frequency;
 }
 
 ///// UPPER SECTION calc functions
@@ -187,28 +146,15 @@ function calcSix(diceArray) {
 ///// LOWER SECTION calc functions
 function calcThreeOfAKind(diceArray) {
   let frequency = calcFrequency(diceArray);
-  if (frequency.includes(3)) {
+  if (frequency.includes(3) || frequency.includes(4) || frequency.includes(5)) {
     return sum(diceArray);
   }
   return 0;
 }
 
-// function calcThreeOfAKind(diceArray) {
-//   if (
-//     counter(diceArray, 1) >= 3 ||
-//     counter(diceArray, 2) >= 3 ||
-//     counter(diceArray, 3) >= 3 ||
-//     counter(diceArray, 4) >= 3 ||
-//     counter(diceArray, 5) >= 3 ||
-//     counter(diceArray, 6) >= 3
-//   ) {
-//     return sum(diceArray);
-//   }
-// }
-
 function calcFourOfAKind(diceArray) {
   let frequency = calcFrequency(diceArray);
-  if (frequency.includes(4)) {
+  if (frequency.includes(4) || frequency.includes(5)) {
     return sum(diceArray);
   }
   return 0;
@@ -221,33 +167,27 @@ function calcFullHouse(diceArray) {
   } else return 0;
 }
 
+// bigStraight is always 40
 function calcBigStraight(diceArray) {
   let frequency = calcFrequency(diceArray);
   let stringFrequency = frequency.toString();
-  if (stringFrequency === "1,1,1,1,1,0" || stringFrequency === "0,1,1,1,1,1") {
+  if (stringFrequency === "1,1,1,1,1,0" || stringFrequency === "0,1,1,1,1,1" 
+  || stringFrequency === "1,1,1,1,1,1") {
     return 40;
   }
   return 0;
 }
 
-function tranformArray(diceArray) {
-  //helper function for small straight
-  let newArray = [];
-  diceArray.forEach(function(dice) {
-    newArray.push(dice.eyes);
-  });
-  return newArray;
-}
-
+// smallStraight is always 30
 function calcSmallStraight(diceArray) {
   let nrArray = tranformArray(diceArray);
   nrArray.sort();
   let count = 0;
   for (let i = 1; i < nrArray.length; i++) {
-    if (nrArray[i] === nrArray[i - 1]) {
+    if (nrArray[i] !== nrArray[i - 1]) {
       count++;
     } else {
-      count = 0;
+      count--;
     }
   }
   if (count >= 3) {
@@ -256,10 +196,7 @@ function calcSmallStraight(diceArray) {
   return 0;
 }
 
-// bigStraight is always 40
-// smallStraight is always 30
 //yathzee is alwazs 50
-
 function calcYahtzee(diceArray) {
   for (i = 1; i < diceArray.length; i++) {
     if (diceArray[i].eyes !== diceArray[i - 1].eyes) {
@@ -272,3 +209,51 @@ function calcYahtzee(diceArray) {
 function calcChance(diceArray) {
   return sum(diceArray);
 } //the sum of all dice, no rules
+
+////HELPER FUNCTIONS
+
+function tranformArray(diceArray) {
+  //helper function for small straight
+  let newArray = [];
+  diceArray.forEach(function(dice) {
+    newArray.push(dice.eyes);
+  });
+  return newArray;
+}
+
+function sum(diceArray) {
+  var sum = 0;
+  for (i = 0; i < diceArray.length; i++) {
+    sum = sum + diceArray[i].eyes;
+  }
+  return sum;
+}
+
+function counter(array, item) {
+  var counter = 0;
+  for (let i = 0; i < array.length; i++) {
+    if (array[i] === item) {
+      counter++;
+    }
+  }
+  return counter;
+}
+
+function calcN(diceArray, number) {
+  var calc = 0;
+  for (i = 0; i < diceArray.length; i++) {
+    if (diceArray[i].eyes === number) {
+      calc = calc + number;
+    }
+  }
+  return calc;
+}
+
+function calcFrequency(diceArray) {
+  let frequency = [0, 0, 0, 0, 0, 0];
+  for (let i = 0; i < diceArray.length; i++) {
+    let value = diceArray[i].eyes;
+    frequency[value - 1] = frequency[value - 1] + 1;
+  }
+  return frequency;
+}

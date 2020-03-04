@@ -35,7 +35,7 @@ $scoreOne.addEventListener("click", function() {
 
 let $scoreTwo = document.getElementById("2-score");
 $scoreTwo.addEventListener("click", function() {
-  if (game.throws > 0) {
+  if (game.throws > 0 && scoreCard.state.allTwos === null) {
     scoreCard.addTwos(game.allDice);
     game.resetThrows();
     renderGame(game, scoreCard);
@@ -45,9 +45,8 @@ $scoreTwo.addEventListener("click", function() {
 //fuer alle umstellen
 let $scoreThree = document.getElementById("3-score");
 $scoreThree.addEventListener("click", function() {
-  if (game.throws > 0) {
+  if (game.throws > 0 && scoreCard.state.allThrees === null) {
     scoreCard.addThrees(game.allDice);
-    $scoreThree.innerHTML = scoreCard.state.allThrees;
     game.resetThrows();
     renderGame(game, scoreCard);
   }
@@ -55,9 +54,8 @@ $scoreThree.addEventListener("click", function() {
 
 let $scoreFour = document.getElementById("4-score");
 $scoreFour.addEventListener("click", function() {
-  if (game.throws > 0) {
+  if (game.throws > 0 && scoreCard.state.allFours === null) {
     scoreCard.addFours(game.allDice);
-    $scoreFour.innerHTML = scoreCard.state.allFours;
     game.resetThrows();
     renderGame(game, scoreCard);
   }
@@ -65,9 +63,8 @@ $scoreFour.addEventListener("click", function() {
 
 let $scoreFive = document.getElementById("5-score");
 $scoreFive.addEventListener("click", function() {
-  if (game.throws > 0) {
+  if (game.throws > 0 && scoreCard.state.allFives === null) {
     scoreCard.addFives(game.allDice);
-    $scoreFive.innerHTML = scoreCard.state.allFives;
     game.resetThrows();
     renderGame(game, scoreCard);
   }
@@ -75,9 +72,8 @@ $scoreFive.addEventListener("click", function() {
 
 let $scoreSix = document.getElementById("6-score");
 $scoreSix.addEventListener("click", function() {
-  if (game.throws > 0) {
+  if (game.throws > 0 && scoreCard.state.allSixes === null) {
     scoreCard.addSix(game.allDice);
-    $scoreSix.innerHTML = scoreCard.state.allSixes;
     game.resetThrows();
     renderGame(game, scoreCard);
   }
@@ -85,9 +81,8 @@ $scoreSix.addEventListener("click", function() {
 
 let $threeOfaKind = document.getElementById("3-kind");
 $threeOfaKind.addEventListener("click", function() {
-  if (game.throws > 0) {
+  if (game.throws > 0 && scoreCard.state.threeOfaKind === null) {
     scoreCard.addthreeOfaKind(game.allDice);
-    $threeOfaKind.innerHTML = scoreCard.state.threeOfaKind;
     game.resetThrows();
     renderGame(game, scoreCard);
   }
@@ -95,9 +90,8 @@ $threeOfaKind.addEventListener("click", function() {
 
 let $fourOfaKind = document.getElementById("4-kind");
 $fourOfaKind.addEventListener("click", function() {
-  if (game.throws > 0) {
+  if (game.throws > 0 && scoreCard.state.fourOfaKind === null) {
     scoreCard.addFourOfaKind(game.allDice);
-    $fourOfaKind.innerHTML = scoreCard.state.fourOfaKind;
     game.resetThrows();
     renderGame(game, scoreCard);
   }
@@ -105,29 +99,26 @@ $fourOfaKind.addEventListener("click", function() {
 
 let $fullHouse = document.getElementById("full-house");
 $fullHouse.addEventListener("click", function() {
-  if (game.throws > 0) {
+  if (game.throws > 0 && scoreCard.state.fullHouse === null) {
     scoreCard.addFullHouse(game.allDice);
-    $fullHouse.innerHTML = scoreCard.state.fullHouse;
     game.resetThrows();
     renderGame(game, scoreCard);
   }
 });
 
-// let $smallStraight = document.getElementById("small-straight");
-// $smallStraight.addEventListener("click", function(){
-//   if (game.throws > 0) {
-//   scoreCard.addSmallStraight(game.allDice);
-//   $smallStraight.innerHTML = scoreCard.state.smallStraight;
-//   renderGame(game, scoreCard);
-//   game.resetThrows()
-//   }
-// })
+let $smallStraight = document.getElementById("small-straight");
+$smallStraight.addEventListener("click", function(){
+  if (game.throws > 0 && scoreCard.state.smallStraight === null) {
+  scoreCard.addSmallStraight(game.allDice);
+  renderGame(game, scoreCard);
+  game.resetThrows()
+  }
+})
 
 let $bigStraight = document.getElementById("big-straight");
 $bigStraight.addEventListener("click", function() {
-  if (game.throws > 0) {
+  if (game.throws > 0 && scoreCard.state.bigStraight === null) {
     scoreCard.addBigStraight(game.allDice);
-    $bigStraight.innerHTML = scoreCard.state.bigStraight;
     game.resetThrows();
     renderGame(game, scoreCard);
   }
@@ -135,9 +126,8 @@ $bigStraight.addEventListener("click", function() {
 
 let $yahtzee = document.getElementById("yahtzee");
 $yahtzee.addEventListener("click", function() {
-  if (game.throws > 0) {
+  if (game.throws > 0 && scoreCard.state.yahtzee === null) {
     scoreCard.addYahtzee(game.allDice);
-    $yahtzee.innerHTML = scoreCard.state.yahtzee;
     game.resetThrows();
     renderGame(game, scoreCard);
   }
@@ -145,12 +135,25 @@ $yahtzee.addEventListener("click", function() {
 
 let $chance = document.getElementById("chance");
 $chance.addEventListener("click", function() {
-  if (game.throws > 0) {
+  if (game.throws > 0 && scoreCard.state.chance === null) {
     scoreCard.addChance(game.allDice);
-    $chance.innerHTML = scoreCard.state.chance;
     game.resetThrows();
     renderGame(game, scoreCard);
   }
 });
 
-// let $specChance = document.querySelector("#chance .speculative-score");
+//MODAL
+let modal = document.getElementById("myModal");
+let btn = document.getElementById("rulesButton");
+let span = document.getElementsByClassName("close")[0];
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+span.onclick = function() {
+  modal.style.display = "none";
+}
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}

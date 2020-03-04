@@ -1,13 +1,22 @@
 body {
     background-image: url(./diego-passadori-e6frrz-kh-0-unsplash.jpg);
     font-family: 'Spartan';
-    
 }
 
-header{
+*{
+    box-sizing: content-box;
+}
+
+header {
     padding: 40px 0;
 }
-.title{
+
+.title {
+    color: #E9ECEF;
+    font-weight: bold;
+}
+
+h2 {
     color: #E9ECEF;
 }
 
@@ -15,45 +24,60 @@ header{
     justify-content: space-between;
 }
 
-.boardDice, .handDice{
+.boardDice,
+.handDice {
     flex-direction: row;
     display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 40px;
+    border-radius: 20px;
+    padding: 30px;
+    border-bottom: 1px solid white;
+    height: 200px;
 }
 
-.board{
+.handDice {
+    box-shadow: 10px 30px 60px -10px rgba(0, 0, 0, 0.4) inset, 5px 5px 10px -5px rgba(0, 0, 0, 0.2) inset;
+}
+
+.boardDice {
+    background-color: #286631;
+    box-shadow: 10px 30px 60px -10px rgba(0, 0, 0, 0.4) inset, 5px 5px 10px -5px rgba(0, 0, 0, 0.2) inset;
+}
+
+.board {
     margin-bottom: 40px;
 }
 
-.handDice{
-    margin-bottom: 40px;
-}
-
-h2{
-    color: #E9ECEF;
-}
-
-.dice{
-    border: 1px solid black ;
+.dice {
+    text-align: center;
+    /* border: 1px solid black; */
+    /* height: 80px; */
+    /* background-color: antiquewhite; */
     width: 80px;
-    height: 80px;
-    background-color: antiquewhite;
+    font-size: 100px;
+    color: #aeb7b7;
 }
 
 td {
     font-weight: bold;
 }
 
-.buttons{
-    flex-direction: column;
-    display: flex;
-    /* max-width: fit-content; */
+.table .thead-dark th {
+    background-color: #286631;
 }
 
-#rollButton{
+.buttons {
+    flex-direction: column;
+    display: flex;
+}
+
+#rollButton {
     margin-bottom: 20px;
 }
 
-#rulesButton{
+#rulesButton {
     margin-bottom: 40px;
 }
 
@@ -61,10 +85,57 @@ td {
     margin-bottom: 40px;
 }
 
-/* .progress-0 {
-    color: black !important;
-} */
-
 .speculative-score {
-    color:darkred;
+    color: darkred;
+}
+
+#scoreSheet {
+    background-color: #FFFFFF44;
+    text-align: center;
+}
+
+/* The Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal p,
+.modal li {
+    font-size: small;
+    line-height: 1.7;
+}
+
+.modal h4 {
+    color: #286631;
 }
