@@ -13,7 +13,7 @@ class Board {
     if (this.allDice.length < 6) {
       this.allDice.push(oneDice);
     }
-    return this.allDice
+    return this.allDice;
   }
 
   removeDice(oneDice) {

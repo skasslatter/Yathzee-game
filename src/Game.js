@@ -39,18 +39,3 @@ class Game {
     return this.throws;
   }
 }
-
-
-// setScore() {
-//   let self = this;
-//   let myHand = this.hand
-//   myHand.forEach(function(oneDice) {
-//     self.allDice.addDice(oneDice);
-//     self.hand.removeDice(oneDice);
-//   });
-//   this.board.forEach(function(oneDice) {
-//     self.allDice.addDice(oneDice);
-//     self.board.removeDice(oneDice);
-//   });
-//   this.throws = 0;
-// }

@@ -25,10 +25,4 @@ describe("The Board", function() {
     expect(aBoard.allDice.length).toBe(3);
     expect(aBoard.allDice).toEqual([1, 4, 6]);
   });
-
-  it("the rollAllDice method should roll all dice of the board", function() {
-    expect();
-  });
-
-  
 });

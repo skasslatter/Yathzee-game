@@ -17,4 +17,3 @@ describe("The Dice", function() {
   });
 });
 
-//ok for now

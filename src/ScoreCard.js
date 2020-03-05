@@ -17,6 +17,7 @@ class ScoreCard {
     };
   }
 
+  //ADD METHODS
   addOnes(diceArray) {
     if (this.state.allOnes === null) {
       this.state.allOnes = calcOnes(diceArray);
@@ -204,32 +205,6 @@ function calcSmallStraight(diceArray) {
   }
   return 0;
 }
-
-// function calcSmallStraight(diceArray) {
-//   debugger
-//   let frequency = calcFrequency(diceArray);
-//   if (frequency.includes("5")) {    //to check if it's yahtzee. Yahtzee enables you to choose small or big Staight too
-//     return 30;
-//   }
-
-//   let nrArray = transformArray(diceArray);
-//   nrArray.sort();
-
-//   let uniqueArray = uniquifyArray(nrArray)
-//   let count = 0;
-
-//   for (let i = 1; i < uniqueArray.length; i++) {
-//     if (uniqueArray[i] === uniqueArray[i - 1] -1) {
-//       count = count + 1;
-//       if (count >= 3) {
-//         return 30;
-//       }
-//     } else {
-//       count = 0;
-//     }
-//   }
-//   return 0;
-// }
 
 //yathzee is always 50. Yatzee enables you to choose small or big Staight too
 function calcYahtzee(diceArray) {
