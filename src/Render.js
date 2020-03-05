@@ -154,17 +154,17 @@ function renderScorecard(game, scoreCard) {
 function renderDice(dice) {
   // let symbols = ["⚀", "⚁", "⚂", "⚃", "⚄", "⚅"];
     if (dice.eyes === 1) {
-      return ("./dice-six-faces-one.svg");
+      return ("./src/dice-six-faces-one.svg");
     } else if (dice.eyes === 2) {
-      return ("./dice-six-faces-two.svg");
+      return ("./src/dice-six-faces-two.svg");
     } else if (dice.eyes === 3) {
-      return ("./dice-six-faces-three.svg");
+      return ("./src/dice-six-faces-three.svg");
     } else if (dice.eyes === 4) {
-      return ("./dice-six-faces-four.svg");
+      return ("./src/dice-six-faces-four.svg");
     } else if (dice.eyes === 5) {
-      return ("./dice-six-faces-five.svg");
+      return ("./src/dice-six-faces-five.svg");
     } else if (dice.eyes === 6) {
-      return ("./dice-six-faces-six.svg");
+      return ("./src/dice-six-faces-six.svg");
     }
 }
 
