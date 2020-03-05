@@ -332,11 +332,11 @@ describe("The scorecard", function() {
       let diceArray = [
         (dice1 = { eyes: 6 }),
         (dice2 = { eyes: 6 }),
-        (dice3 = { eyes: 6 }),
-        (dice4 = { eyes: 5 }),
-        (dice5 = { eyes: 5 })
+        (dice3 = { eyes: 1 }),
+        (dice4 = { eyes: 1 }),
+        (dice5 = { eyes: 1 })
       ];
-      expect(calcChance(diceArray)).toBe(28);
+      expect(calcChance(diceArray)).toBe(15);
     });
   });
 
@@ -679,7 +679,7 @@ describe("The scorecard", function() {
 
   describe("The addChance function", function() {
     it("should add the sum of all dice", function() {
-      aScoreCard.state.addChance = null;
+      aScoreCard.state.chance = null;
       let diceArray = [
         (dice1 = { eyes: 1 }),
         (dice2 = { eyes: 1 }),
@@ -694,14 +694,14 @@ describe("The scorecard", function() {
   });
 
   describe("The getBonus function", function() {
-    it("should add 50 if the total is higher than 63", function() {
+    it("should add 50 if the total is higher than or euqal to 63", function() {
       aScoreCard.state = {
-        allOnes: 1,
+        allOnes: 3,
         allTwos: 6,
         allThrees: 9,
         allFours: 12,
         allFives: 15,
-        allSixes: 24
+        allSixes: 18
       };
 
       expect(aScoreCard.getBonus()).toEqual(50);

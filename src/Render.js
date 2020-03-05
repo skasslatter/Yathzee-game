@@ -143,29 +143,28 @@ function renderScorecard(game, scoreCard) {
 
   ///reset spec. score
   let $specScore = document.querySelectorAll(".speculative-score");
-  if (game.throws === 0){
+  if (game.throws === 0) {
     $specScore.forEach(function($oneScore) {
       $oneScore.innerHTML = "";
     });
   }
-
 }
 
 function renderDice(dice) {
   // let symbols = ["⚀", "⚁", "⚂", "⚃", "⚄", "⚅"];
-    if (dice.eyes === 1) {
-      return ("./src/dice-six-faces-one.svg");
-    } else if (dice.eyes === 2) {
-      return ("./src/dice-six-faces-two.svg");
-    } else if (dice.eyes === 3) {
-      return ("./src/dice-six-faces-three.svg");
-    } else if (dice.eyes === 4) {
-      return ("./src/dice-six-faces-four.svg");
-    } else if (dice.eyes === 5) {
-      return ("./src/dice-six-faces-five.svg");
-    } else if (dice.eyes === 6) {
-      return ("./src/dice-six-faces-six.svg");
-    }
+  if (dice.eyes === 1) {
+    return "./src/dice-six-faces-one.svg";
+  } else if (dice.eyes === 2) {
+    return "./src/dice-six-faces-two.svg";
+  } else if (dice.eyes === 3) {
+    return "./src/dice-six-faces-three.svg";
+  } else if (dice.eyes === 4) {
+    return "./src/dice-six-faces-four.svg";
+  } else if (dice.eyes === 5) {
+    return "./src/dice-six-faces-five.svg";
+  } else if (dice.eyes === 6) {
+    return "./src/dice-six-faces-six.svg";
+  }
 }
 
 function renderBoard(board) {
@@ -221,18 +220,30 @@ function renderFinish(scoreCard) {
   if (scoreCard.isGameFinished() === true) {
     $game.style.display = "none";
     $end.style.display = "block";
-    renderScore(scoreCard)
+    renderScore(scoreCard);
   } else {
     $game.style.display = "block";
     $end.style.display = "none";
   }
 }
 
-function renderScore (scoreCard){
-  $scoreDispaly = document.querySelector(".score")
-  $scoreDispaly.innerHTML = (`Your score is ${scoreCard.getTotal()}`);
+function renderScore(scoreCard) {
+  $scoreDispaly = document.querySelector(".score");
+  $scoreDispaly.innerHTML = `Your score is ${scoreCard.getTotal()}`;
 }
 
+function animateDice() {
+  let $board = document.getElementById("board");
+  let $dice = $board.querySelectorAll(".dice");
+  $dice.forEach(function($oneDice) {
+    $oneDice.classList.add("rotate-center");
+  });
+  setTimeout(function() {
+    $dice.forEach(function($oneDice) {
+      $oneDice.classList.remove("rotate-center");
+    });
+  }, 1000);
+}
 
 function renderGame(game, scorecard) {
   renderFinish(scoreCard);

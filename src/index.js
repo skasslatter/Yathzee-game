@@ -4,7 +4,9 @@ let scoreCard = new ScoreCard();
 let $rollDiceButton = document.getElementById("rollButton");
 $rollDiceButton.addEventListener("click", function() {
   game.rollDice();
+  animateDice();
   renderGame(game, scoreCard);
+  animateDice();
 });
 
 let $boardDice = document.querySelectorAll("#board .dice");
