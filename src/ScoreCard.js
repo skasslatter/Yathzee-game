@@ -109,8 +109,7 @@ class ScoreCard {
 
   isGameFinished() {
     for (let property in this.state) {
-      if (property === null);
-      {
+      if (this.state[property] === null) {
         return false;
       }
     }
@@ -171,8 +170,11 @@ function calcFullHouse(diceArray) {
 function calcBigStraight(diceArray) {
   let frequency = calcFrequency(diceArray);
   let stringFrequency = frequency.toString();
-  if (stringFrequency === "1,1,1,1,1,0" || stringFrequency === "0,1,1,1,1,1" 
-  || stringFrequency === "1,1,1,1,1,1") {
+  if (
+    stringFrequency === "1,1,1,1,1,0" ||
+    stringFrequency === "0,1,1,1,1,1" ||
+    frequency.includes(5) //to check if it's yahtzee. Yahtzee enables you to choose small or big Staight too
+  ) {
     return 40;
   }
   return 0;
@@ -180,23 +182,56 @@ function calcBigStraight(diceArray) {
 
 // smallStraight is always 30
 function calcSmallStraight(diceArray) {
-  let nrArray = tranformArray(diceArray);
-  nrArray.sort();
-  let count = 0;
-  for (let i = 1; i < nrArray.length; i++) {
-    if (nrArray[i] !== nrArray[i - 1]) {
-      count++;
-    } else {
-      count--;
-    }
-  }
-  if (count >= 3) {
+  let frequency = calcFrequency(diceArray);
+  if (frequency.includes(5)) {
+    //to check if it's yahtzee. Yahtzee enables you to choose small or big Staight too
     return 30;
+  }
+  let nrArray = transformArray(diceArray);
+  nrArray.sort();
+  let uniqueArray = uniquifyArray(nrArray); //to get rid of duplicates
+  let count = 0;
+
+  for (let i = 1; i < uniqueArray.length; i++) {
+    if (uniqueArray[i] === uniqueArray[i - 1] + 1) {
+      count = count + 1;
+      if (count >= 3) {
+        return 30;
+      }
+    } else {
+      count = 0;
+    }
   }
   return 0;
 }
 
-//yathzee is alwazs 50
+// function calcSmallStraight(diceArray) {
+//   debugger
+//   let frequency = calcFrequency(diceArray);
+//   if (frequency.includes("5")) {    //to check if it's yahtzee. Yahtzee enables you to choose small or big Staight too
+//     return 30;
+//   }
+
+//   let nrArray = transformArray(diceArray);
+//   nrArray.sort();
+
+//   let uniqueArray = uniquifyArray(nrArray)
+//   let count = 0;
+
+//   for (let i = 1; i < uniqueArray.length; i++) {
+//     if (uniqueArray[i] === uniqueArray[i - 1] -1) {
+//       count = count + 1;
+//       if (count >= 3) {
+//         return 30;
+//       }
+//     } else {
+//       count = 0;
+//     }
+//   }
+//   return 0;
+// }
+
+//yathzee is always 50. Yatzee enables you to choose small or big Staight too
 function calcYahtzee(diceArray) {
   for (i = 1; i < diceArray.length; i++) {
     if (diceArray[i].eyes !== diceArray[i - 1].eyes) {
@@ -212,8 +247,7 @@ function calcChance(diceArray) {
 
 ////HELPER FUNCTIONS
 
-function tranformArray(diceArray) {
-  //helper function for small straight
+function transformArray(diceArray) {
   let newArray = [];
   diceArray.forEach(function(dice) {
     newArray.push(dice.eyes);
@@ -256,4 +290,14 @@ function calcFrequency(diceArray) {
     frequency[value - 1] = frequency[value - 1] + 1;
   }
   return frequency;
+}
+
+function uniquifyArray(array) {
+  let uniqueArray = [];
+  for (i = 0; i < array.length; i++) {
+    if (uniqueArray.indexOf(array[i]) === -1) {
+      uniqueArray.push(array[i]);
+    }
+  }
+  return uniqueArray;
 }

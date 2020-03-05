@@ -20,34 +20,52 @@
     <header class="container">
         <div class="row">
             <div class="header-text col-12">
-                <h1 class="title text-center">Let's play <i>YAHTZEE!</i> 🎲🎲🎲</h1>
+                <h1 class="title text-center animation">Let's play <i>YAHTZEE!</i> 🎲 🎲 🎲</h1>
             </div>
         </div>
     </header>
 
     <section class="container" id="game">
         <div class="row">
-            <div class="col-10 col-md-5 col-md-offset-2">
-
+            <div class="col-10 col-md-6 col-md-offset-2">
                 <section id="board" class="board">
                     <!-- <h2>Board</h2> -->
                     <div class="boardDice">
-                        <div class="dice" style="visibility: hidden;"></div>
-                        <div class="dice" style="visibility: hidden;"></div>
-                        <div class="dice" style="visibility: hidden;"></div>
-                        <div class="dice" style="visibility: hidden;"></div>
-                        <div class="dice" style="visibility: hidden;"></div>
-                    </div>
+                        <div style="visibility: hidden;">
+                            <img class="dice animation" src="" alt="dice">
+                        </div>
+                        <div style="visibility: hidden;">
+                            <img class="dice" src="" alt="dice">
+                        </div>                        
+                        <div style="visibility: hidden;">
+                            <img class="dice" src="" alt="dice">
+                        </div>                        
+                        <div style="visibility: hidden;">
+                            <img class="dice" src="" alt="dice">
+                        </div>                        
+                        <div style="visibility: hidden;">
+                            <img class="dice" src="" alt="dice">
+                        </div>                    </div>
                 </section>
                 <section id="hand" class="hand">
                     <!-- <h2>Hand</h2> -->
 
                     <div class="handDice">
-                        <div class="dice" style="visibility: hidden;"></div>
-                        <div class="dice" style="visibility: hidden;"></div>
-                        <div class="dice" style="visibility: hidden;"></div>
-                        <div class="dice" style="visibility: hidden;"></div>
-                        <div class="dice" style="visibility: hidden;"></div>
+                        <div style="visibility: hidden;">
+                            <img class="dice" src="" alt="dice">
+                        </div>
+                        <div style="visibility: hidden;">
+                            <img class="dice" src="" alt="dice">
+                        </div>                        
+                        <div style="visibility: hidden;">
+                            <img class="dice" src="" alt="dice">
+                        </div>                        
+                        <div style="visibility: hidden;">
+                            <img class="dice" src="" alt="dice">
+                        </div>                        
+                        <div style="visibility: hidden;">
+                            <img class="dice" src="" alt="dice">
+                        </div>   
                     </div>
                     <div class="buttons">
                         <button type="button" id="rollButton" class="btn btn-success" type="button">Roll the
@@ -58,151 +76,158 @@
                                 0/3 Throws
                             </div>
                         </div>
-                        <button id="rulesButton" class="btn btn-warning" type="button">The rules</button>
-                        <div id="myModal" class="modal">
-                            <div class="modal-content">
-                                <span class="close">&times;</span>
-                                <div>
-                                    <h4>Yahtzee Rules</h4>
-                                    <p>The objective of YAHTZEE is to get as many points as possible by rolling five
-                                        dice and getting certain combinations of dice.</p>
-                                    <p>In each turn a player may throw the dice up to three times.</p>
-                                    <h4> Upper section combinations</h4>
-                                    <ul>
-                                        <li>Ones: Get as many ones as possible.</li>
-                                        <li>Twos: Get as many twos as possible.</li>
-                                        <li>Threes: Get as many threes as possible.</li>
-                                        <li>Fours: Get as many fours as possible.</li>
-                                        <li>Fives: Get as many fives as possible.</li>
-                                        <li>Sixes: Get as many sixes as possible.</li>
-                                    </ul>
-                                    <p>If the sum of all the above combinations is 63 or more, the player will get a bonus of 50 points.</p>
-                                    <h4> Lower section combinations</h4>
-                                    <ul>
-                                        <li>Three of a kind: Get three dice with the same number. Points are the sum all dice</li>
-                                        <li>Four of a kind: Get four dice with the same number. Points are the sum all dice</li>
-                                        <li>Full house: Get three of a kind and a pair. Scores 25 points.</li>
-                                        <li>Small straight: Get four sequential dice. Scores 30 points.</li>
-                                        <li>Large straight: Get five sequential dice. Scores 40 points.</li>
-                                        <li>Chance: You can put anything into chance.</li>
-                                        <li>YAHTZEE: Five of a kind. Scores 50 points.</li>
-                                    </ul>
-                                </div>
-
-                            </div>
-
-                        </div>
+                    </div>
                 </section>
             </div>
             <div class="col-10 col-md-5 ml-2">
-                <div id="scoresheet">
-                    <div id="scoreSheet">
-                        <table class="table table-sm table-striped table-bordered table-hover">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th class="section-heading">Upper section</th>
-                                    <th class="align-middle">Score</th>
-                                    <th class="align-middle">Spec. Score</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Ones</td>
-                                    <td id="1-score"></td>
-                                    <td id="1-score-spec" class="speculative-score"></td>
-                                </tr>
-                                <tr>
-                                    <td>Twos</td>
-                                    <td id="2-score"></td>
-                                    <td id="2-score-spec" class="speculative-score"></td>
-                                </tr>
-                                <tr>
-                                    <td>Threes</td>
-                                    <td id="3-score"></td>
-                                    <td id="3-score-spec" class="speculative-score"></td>
-                                </tr>
-                                <tr>
-                                    <td>Fours</td>
-                                    <td id="4-score"></td>
-                                    <td id="4-score-spec" class="speculative-score"></td>
-                                </tr>
-                                <tr>
-                                    <td>Fives</td>
-                                    <td id="5-score"></td>
-                                    <td id="5-score-spec" class="speculative-score"></td>
-                                </tr>
-                                <tr>
-                                    <td>Sixes</td>
-                                    <td id="6-score"></td>
-                                    <td id="6-score-spec" class="speculative-score"></td>
-                                </tr>
-                                <tr class="table-success">
-                                    <td>Bonus</td>
-                                    <td id="bonus"></td>
-                                    <td class="empty-score"></td>
-                                </tr>
-                            </tbody>
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th class="section-heading">Lower section</th>
-                                    <th class="align-middle">Score</th>
-                                    <th class="align-middle">Spec. Score</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>3 of a kind</td>
-                                    <td id="3-kind"></td>
-                                    <td id="3-kind-spec" class="speculative-score"></td>
-                                </tr>
-                                <tr>
-                                    <td>4 of a kind</td>
-                                    <td id="4-kind"></td>
-                                    <td id="4-kind-spec" class="speculative-score"></td>
-                                </tr>
-                                <tr>
-                                    <td>Full House</td>
-                                    <td id="full-house"></td>
-                                    <td id="full-house-spec" class="speculative-score"></td>
-                                </tr>
-                                <tr>
-                                    <td>Small Straight</td>
-                                    <td id="small-straight" class="align-middle"></td>
-                                    <td id="small-straight-spec" class="speculative-score align-middle"></td>
-                                </tr>
-                                <tr>
-                                    <td>Big Straight</td>
-                                    <td id="big-straight"></td>
-                                    <td id="big-straight-spec" class="speculative-score"></td>
-                                </tr>
-                                <tr>
-                                    <td>Yahtzee</td>
-                                    <td id="yahtzee"></td>
-                                    <td id="yahtzee-spec" class="speculative-score"></td>
-                                </tr>
-                                <tr>
-                                    <td>Chance</td>
-                                    <td id="chance"></td>
-                                    <td id="chance-spec" class="speculative-score"></td>
-                                </tr>
-                                <tr class="table-success">
-                                    <td>Total Score</td>
-                                    <td id="total"></td>
-                                    <td class="empty-score"></td>
-                                </tr>
-                            </tbody>
-                        </table>
+                <div id="scoreSheet">
+                    <table class="table table-sm table-striped table-bordered table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th class="section-heading">Upper section</th>
+                                <th class="align-middle">Score</th>
+                                <th class="align-middle">Spec. Score</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Ones</td>
+                                <td id="1-score"></td>
+                                <td id="1-score-spec" class="speculative-score"></td>
+                            </tr>
+                            <tr>
+                                <td>Twos</td>
+                                <td id="2-score"></td>
+                                <td id="2-score-spec" class="speculative-score"></td>
+                            </tr>
+                            <tr>
+                                <td>Threes</td>
+                                <td id="3-score"></td>
+                                <td id="3-score-spec" class="speculative-score"></td>
+                            </tr>
+                            <tr>
+                                <td>Fours</td>
+                                <td id="4-score"></td>
+                                <td id="4-score-spec" class="speculative-score"></td>
+                            </tr>
+                            <tr>
+                                <td>Fives</td>
+                                <td id="5-score"></td>
+                                <td id="5-score-spec" class="speculative-score"></td>
+                            </tr>
+                            <tr>
+                                <td>Sixes</td>
+                                <td id="6-score"></td>
+                                <td id="6-score-spec" class="speculative-score"></td>
+                            </tr>
+                            <tr class="table-success">
+                                <td>Bonus</td>
+                                <td id="bonus"></td>
+                                <td class="empty-score"></td>
+                            </tr>
+                        </tbody>
+                        <thead class="thead-dark">
+                            <tr>
+                                <th class="section-heading">Lower section</th>
+                                <th class="align-middle">Score</th>
+                                <th class="align-middle">Spec. Score</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>3 of a kind</td>
+                                <td id="3-kind"></td>
+                                <td id="3-kind-spec" class="speculative-score"></td>
+                            </tr>
+                            <tr>
+                                <td>4 of a kind</td>
+                                <td id="4-kind"></td>
+                                <td id="4-kind-spec" class="speculative-score"></td>
+                            </tr>
+                            <tr>
+                                <td>Full House</td>
+                                <td id="full-house"></td>
+                                <td id="full-house-spec" class="speculative-score"></td>
+                            </tr>
+                            <tr>
+                                <td>Small Straight</td>
+                                <td id="small-straight" class="align-middle"></td>
+                                <td id="small-straight-spec" class="speculative-score align-middle"></td>
+                            </tr>
+                            <tr>
+                                <td>Big Straight</td>
+                                <td id="big-straight"></td>
+                                <td id="big-straight-spec" class="speculative-score"></td>
+                            </tr>
+                            <tr>
+                                <td>Yahtzee</td>
+                                <td id="yahtzee"></td>
+                                <td id="yahtzee-spec" class="speculative-score"></td>
+                            </tr>
+                            <tr>
+                                <td>Chance</td>
+                                <td id="chance"></td>
+                                <td id="chance-spec" class="speculative-score"></td>
+                            </tr>
+                            <tr class="table-success">
+                                <td>Total Score</td>
+                                <td id="total"></td>
+                                <td class="empty-score"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div id="rulesMenu">
+                    <button id="rulesButton" class="btn btn-warning" type="button">The rules</button>
+                    <div id="myModal" class="modal">
+                        <div class="modal-content">
+                            <span class="close">&times;</span>
+                            <div>
+                                <h4>Yahtzee Rules</h4>
+                                <p>The objective of YAHTZEE is to get as many points as possible by rolling five
+                                    dice and getting certain combinations of dice.</p>
+                                <p>In each turn a player may throw the dice up to three times.</p>
+                                <h4> Upper section combinations</h4>
+                                <ul>
+                                    <li>Ones: Get as many ones as possible.</li>
+                                    <li>Twos: Get as many twos as possible.</li>
+                                    <li>Threes: Get as many threes as possible.</li>
+                                    <li>Fours: Get as many fours as possible.</li>
+                                    <li>Fives: Get as many fives as possible.</li>
+                                    <li>Sixes: Get as many sixes as possible.</li>
+                                </ul>
+                                <p>If the sum of all the above combinations is 63 or more, the player will get a
+                                    bonus of 50 points.</p>
+                                <h4> Lower section combinations</h4>
+                                <ul>
+                                    <li>Three of a kind: Get three dice with the same number. Points are the sum all
+                                        dice</li>
+                                    <li>Four of a kind: Get four dice with the same number. Points are the sum all
+                                        dice</li>
+                                    <li>Full house: Get three of a kind and a pair. Scores 25 points.</li>
+                                    <li>Small straight: Get four sequential dice. Scores 30 points.</li>
+                                    <li>Large straight: Get five sequential dice. Scores 40 points.</li>
+                                    <li>Chance: You can put anything into chance.</li>
+                                    <li>YAHTZEE: Five of a kind. Scores 50 points.</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="game-end">
-        <iframe src="https://giphy.com/embed/kyLYXonQYYfwYDIeZl" width="480" height="360" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/sesamestreet-sesame-street-50th-anniversary-kyLYXonQYYfwYDIeZl">via GIPHY</a>
-    <h2>You did it!</h2>
-    <p class="score"></p>
-        </section>
+    <section id="game-end" style="display: none;">
+        <div>
+            <iframe src="https://giphy.com/embed/kyLYXonQYYfwYDIeZl" width="480" height="360" frameBorder="0"
+                class="giphy-embed" allowFullScreen></iframe>
+            <!-- <a href="https://giphy.com/gifs/sesamestreet-sesame-street-50th-anniversary-kyLYXonQYYfwYDIeZl">via GIPHY</a> -->
+            <h2>You did it!</h2>
+            <p class="score"></p>
+            <button id="new-game" type="button" class="btn btn-success">Start a new game!</button>
+        </div>
+    </section>
 
     <script src="Dice.js"></script>
     <script src="Board.js"></script>

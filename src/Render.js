@@ -140,22 +140,31 @@ function renderScorecard(game, scoreCard) {
   //total
   let $total = document.getElementById("total");
   $total.innerHTML = scoreCard.getTotal();
+
+  ///reset spec. score
+  let $specScore = document.querySelectorAll(".speculative-score");
+  if (game.throws === 0){
+    $specScore.forEach(function($oneScore) {
+      $oneScore.innerHTML = "";
+    });
+  }
+
 }
 
 function renderDice(dice) {
-  let symbols = ["⚀", "⚁", "⚂", "⚃", "⚄", "⚅"];
+  // let symbols = ["⚀", "⚁", "⚂", "⚃", "⚄", "⚅"];
     if (dice.eyes === 1) {
-      return symbols[0];
+      return ("./dice-six-faces-one.svg");
     } else if (dice.eyes === 2) {
-      return symbols[1];
+      return ("./dice-six-faces-two.svg");
     } else if (dice.eyes === 3) {
-      return symbols[2];
+      return ("./dice-six-faces-three.svg");
     } else if (dice.eyes === 4) {
-      return symbols[3];
+      return ("./dice-six-faces-four.svg");
     } else if (dice.eyes === 5) {
-      return symbols[4];
+      return ("./dice-six-faces-five.svg");
     } else if (dice.eyes === 6) {
-      return symbols[5];
+      return ("./dice-six-faces-six.svg");
     }
 }
 
@@ -166,7 +175,7 @@ function renderBoard(board) {
     $oneDice.style.visibility = "hidden";
   });
   board.allDice.forEach(function(dice, index) {
-    $dice[index].innerHTML = renderDice(dice);
+    $dice[index].src = renderDice(dice);
     $dice[index].style.visibility = "visible";
   });
 }
@@ -178,15 +187,8 @@ function renderHand(hand) {
     $oneDice.style.visibility = "hidden";
   });
   hand.allDice.forEach(function(dice, index) {
-    $dice[index].innerHTML = renderDice(dice);
+    $dice[index].src = renderDice(dice);
     $dice[index].style.visibility = "visible";
-  });
-}
-
-function resetSpecScore() {
-  let $specScore = document.querySelectorAll(".speculative-score");
-  $specScore.forEach(function($oneScore) {
-    $oneScore.innerHTML = "";
   });
 }
 
@@ -213,24 +215,29 @@ function renderThrow() {
   }
 }
 
-function renderFinish() {
+function renderFinish(scoreCard) {
   let $game = document.getElementById("game");
+  let $end = document.getElementById("game-end");
   if (scoreCard.isGameFinished() === true) {
     $game.style.display = "none";
+    $end.style.display = "block";
+    renderScore(scoreCard)
   } else {
     $game.style.display = "block";
+    $end.style.display = "none";
   }
 }
-  //hier fehlt noch der container fue den Score
-  //zb Well done, your score is xx
-  //dann ein button zb start new game
-  //der button setzt style.display wieder auf block/none
+
+function renderScore (scoreCard){
+  $scoreDispaly = document.querySelector(".score")
+  $scoreDispaly.innerHTML = (`Your score is ${scoreCard.getTotal()}`);
+}
+
 
 function renderGame(game, scorecard) {
-  resetSpecScore();
+  renderFinish(scoreCard);
   renderBoard(game.board);
   renderHand(game.hand);
   renderScorecard(game, scorecard);
   renderThrow(game.throws);
-  renderFinish();
 }

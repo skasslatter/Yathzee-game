@@ -110,8 +110,8 @@ let $smallStraight = document.getElementById("small-straight");
 $smallStraight.addEventListener("click", function(){
   if (game.throws > 0 && scoreCard.state.smallStraight === null) {
   scoreCard.addSmallStraight(game.allDice);
-  renderGame(game, scoreCard);
   game.resetThrows()
+  renderGame(game, scoreCard);
   }
 })
 
@@ -157,3 +157,10 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }
 }
+
+let $newGame = document.getElementById("new-game")
+$newGame.addEventListener("click", function(){
+  game = new Game();
+  scoreCard = new ScoreCard();
+  renderGame(game, scoreCard);
+})
