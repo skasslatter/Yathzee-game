@@ -27,5 +27,3 @@ describe("The Hand", function() {
     expect(aHand.allDice).toEqual([dice2])
   });
 });
-
-//ok for now

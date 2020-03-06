@@ -245,6 +245,11 @@ function animateDice() {
   }, 1000);
 }
 
+function myPlay(){
+  let audio = document.getElementById("sound");
+  audio.play();
+}
+
 function renderGame(game, scorecard) {
   renderFinish(scoreCard);
   renderBoard(game.board);
