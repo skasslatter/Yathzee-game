@@ -245,8 +245,13 @@ function animateDice() {
   }, 1000);
 }
 
-function myPlay(){
-  let audio = document.getElementById("sound");
+function playDiceSound(){
+  let audio = document.getElementById("dice-sound");
+  audio.play();
+}
+
+function playApplausSound(){
+  let audio = document.getElementById("applaus-sound");
   audio.play();
 }
 

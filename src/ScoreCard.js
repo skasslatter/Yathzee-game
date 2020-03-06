@@ -78,7 +78,11 @@ class ScoreCard {
     if (this.state.yahtzee === null) {
       this.state.yahtzee = calcYahtzee(diceArray);
     }
+    if (calcYahtzee(diceArray) === 50){
+      playApplausSound();
+    }
   }
+
   addChance(diceArray) {
     if (this.state.chance === null) {
       this.state.chance = calcChance(diceArray);

@@ -5,7 +5,7 @@ let $rollDiceButton = document.getElementById("rollButton");
 $rollDiceButton.addEventListener("click", function() {
   game.rollDice();
   animateDice();
-  myPlay();
+  playDiceSound();
   renderGame(game, scoreCard);
   animateDice();
 });
