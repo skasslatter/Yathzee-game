@@ -79,7 +79,6 @@ class ScoreCard {
       this.state.yahtzee = calcYahtzee(diceArray);
     }
     if (calcYahtzee(diceArray) === 50){
-      playApplausSound();
     }
   }
 

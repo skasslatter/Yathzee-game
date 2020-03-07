@@ -131,6 +131,9 @@ let $yahtzee = document.getElementById("yahtzee");
 $yahtzee.addEventListener("click", function() {
   if (game.throws > 0 && scoreCard.state.yahtzee === null) {
     scoreCard.addYahtzee(game.allDice);
+    if (scoreCard.state.yahtzee === 50){
+      playApplausSound();
+    }
     game.resetThrows();
     renderGame(game, scoreCard);
   }

@@ -8,5 +8,3 @@ class Dice {   //equals 1 dice!
         return this.eyes;
     }
 }
-
-//ok for now

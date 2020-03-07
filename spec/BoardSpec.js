@@ -1,5 +1,6 @@
+let aBoard = new Board();
+
 describe("The Board", function() {
-  let aBoard = new Board();
 
   it("should have an rollDice method", function() {
     expect(typeof aBoard.rollAllDice).toBe("function");
