@@ -7,3 +7,6 @@ Yahtzee is a dice game I built in week 3 of my Ironhack bootcamp in Amsterdam. T
 Used technologies:
 
 JavaScript, CSS, Bootstrap, HTML
+
+https://ironhack-yahtzee.netlify.app/
+
