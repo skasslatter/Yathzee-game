@@ -10,6 +10,6 @@ JavaScript, CSS, Bootstrap, HTML
 
 https://ironhack-yahtzee.netlify.app/
 
-![alt text](https://res.cloudinary.com/dwnm4mxrr/image/upload/v1589892902/ironhack/screenshots/yahtzee2_jx1hh6.png)
-![alt text](https://res.cloudinary.com/dwnm4mxrr/image/upload/v1589892902/ironhack/screenshots/yahtzee3_yc6rqi.png)
-![alt text](https://res.cloudinary.com/dwnm4mxrr/image/upload/v1589892902/ironhack/screenshots/yahtzee4_fmqftw.png)
+![alt text](https://res.cloudinary.com/dwnm4mxrr/image/upload/v1589892902/screenshots/ironhack/yahtzee2_jx1hh6.png)
+![alt text](https://res.cloudinary.com/dwnm4mxrr/image/upload/v1589892902/screenshots/ironhack/yahtzee3_yc6rqi.png)
+![alt text](https://res.cloudinary.com/dwnm4mxrr/image/upload/v1589892902/screenshots/ironhack/yahtzee4_fmqftw.png)
